@@ -3,11 +3,18 @@ const app = express();
 const mongoose = require("mongoose");
 const url ="mongodb://localhost:27017/Forum"
 const routerUser = require("./routes/UsersRoute")
+const session = require("express-session");
 app.use(express.static('public'))
 app.set("view engine", "pug");
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));
-
+app.use(
+    session({
+        secret: "your-secret-key", // Change this to a random secret key
+        resave: false,
+        saveUninitialized: true,
+    })
+);
 app.get("/login",(req,res)=>{
     res.render("login")
 })

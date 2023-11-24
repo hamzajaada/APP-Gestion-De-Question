@@ -1,10 +1,19 @@
 html
   head
+    
     title Questions and Answers
-    link(rel="stylesheet" href="styles/home.css")
+    link(rel="stylesheet" href="/styles/home.css")
 
   body
     header
+      if user   
+            h1 Good afternoon #{user.username}
+            a(href="") logout  
+            a(href="") Add article
+      else 
+            a(href="") login  
+            a(href="") Register
+
       h1 Questions and Answers
     main
       section.question-form
