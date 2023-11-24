@@ -1,0 +1,26 @@
+html
+  head
+    title Registration Form
+    link(rel="stylesheet" href="styles/register.css")
+
+  body
+    div.form-container
+      h2 Registration Form
+      form(action="user/register", method="POST")
+        label(for="username") Username
+        input(type="text", id="username", name="username", required)
+
+        label(for="email") Email
+        input(type="email", id="email", name="email", required)
+
+        label(for="password") Password
+        input(type="password", id="password", name="password", required)
+
+        label(for="confirm-password") Confirm Password
+        input(type="password", id="confirm-password", name="confirmpassword", required)
+
+        input(type="submit", value="ajouter")
+
+      p Already have an account?
+        a(href="/login") Login here
+      

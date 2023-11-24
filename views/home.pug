@@ -1,0 +1,28 @@
+html
+  head
+    title Questions and Answers
+    link(rel="stylesheet" href="styles/home.css")
+
+  body
+    header
+      h1 Questions and Answers
+    main
+      section.question-form
+       
+        form(action="/ask", method="POST")
+          
+
+          label(for="question") Your Question
+          input(type="text", name="")
+
+          button(type="submit") Ask
+
+      section.question-list
+            
+            p.question-info
+              | Asked by  on  hamza jaada on 2023
+            
+            h3 hhh
+            a(href="/answer") Answer this question
+
+
