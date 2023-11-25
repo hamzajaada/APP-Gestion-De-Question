@@ -38,7 +38,7 @@ html
               h3 #{q.question}
               if q.user_id
                 p created by #{q.user_id.email} 
-                p #{moment(q.createdAt).subtract(10, 'days').calendar()}
+                p #{moment(q.createdAtgit ).subtract(10, 'days').calendar()}
               else
                 p created by Unknown User
               a(href="#") reponses
