@@ -1,8 +1,8 @@
 const express = require("express")
 const app = express();
 const mongoose = require("mongoose");
-// const url ="mongodb://localhost:27017/Forum"
-const url ="mongodb://127.0.0.1:27017/Forum"
+const url ="mongodb://localhost:27017/Forum"
+//const url ="mongodb://127.0.0.1:27017/Forum"
 
 const routerUser = require("./routes/UsersRoute")
 const routerQuestion = require("./routes/questionroute")
