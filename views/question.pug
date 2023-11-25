@@ -1,3 +1,44 @@
+//- html
+//-   head
+//-     title Reponses
+//-     link(rel="stylesheet", href="/styles/question.css")
+
+//-   body
+//-     header
+//-       h1 Reponses 
+//-       if user
+//-         a.lien(href="/user/home") home
+//-         a.lien(href="/user/logout") Logout
+        
+//-       else
+//-         a.lien(href="/user/home") home
+//-         a.lien(href="/user/login") Login
+//-         a.lien(href="/user/register") Register
+//-     main
+//-       if user
+//-         h2 the question : #{question.question}
+//-         section.question-form
+//-           form(action="/reponse/addReponse", method="POST")
+//-             label(for="question") Your Reponses about :
+//-             input(type="text", name="reponse", placeholder="Write something...")
+//-             input(type="hidden", name="user_id", value=`${user._id}`)
+//-             input(type="hidden", name="question_id", value=`${question._id}`)
+//-             button(type="submit") Envoyer
+    
+//-         if reponse
+//-          each r in reponse
+//-           section.question-list 
+//-             p.created-by  #{moment(r.createdAt).subtract(10, 'days').calendar()} Reponsed by #{r.user_id.email} 
+//-             h4 #{r.reponse}
+//-       else 
+//-         h2 the question : #{question.question}
+//-         if reponse
+//-          each r in reponse
+//-           section.question-list
+//-             p.created-by  #{moment(r.createdAt).subtract(10, 'days').calendar()} Reponsed by #{r.user_id.email} 
+//-             h4 #{r.reponse}
+      
+        
 html
   head
     title Reponses
@@ -7,36 +48,36 @@ html
     header
       h1 Reponses 
       if user
-        a.lien(href="/user/home") home
+        a.lien(href="/user/home") Home
         a.lien(href="/user/logout") Logout
-        
       else
+        a.lien(href="/user/home") Home
         a.lien(href="/user/login") Login
         a.lien(href="/user/register") Register
     main
       if user
-        h2 the question : #{question.question}
+        h2 The Question: #{question.question}
         section.question-form
           form(action="/reponse/addReponse", method="POST")
-            label(for="question") Your Reponses about :
+            label(for="question") Your Response about:
             input(type="text", name="reponse", placeholder="Write something...")
             input(type="hidden", name="user_id", value=`${user._id}`)
             input(type="hidden", name="question_id", value=`${question._id}`)
-            button(type="submit") Envoyer
+            button(type="submit") Send
     
         if reponse
-         each r in reponse
-          div.reponse-list 
-            p Reponses by #{r.user_id.email}
-            p #{moment(r.createdAt).subtract(10, 'days').calendar()}
-            h4 #{r.reponse}
+          each r in reponse
+            section.question-list 
+              p.created-by  #{moment(r.createdAt).subtract(10, 'days').calendar()} Response by #{r.user_id.email} 
+              h4 #{r.reponse}
+        else 
+          h2 Aucun réponse existe pour cette question
       else 
-        h2 the question : #{question.question}
+        h2 The Question: #{question.question}
         if reponse
-         each r in reponse
-          div.reponse-list 
-            p Reponses by #{r.user_id.email}
-            p #{moment(r.createdAt).subtract(10, 'days').calendar()}
-            h4 #{r.reponse}
-      
-        
+          each r in reponse
+            section.question-list
+              p.created-by  #{moment(r.createdAt).subtract(10, 'days').calendar()} Response by #{r.user_id.email} 
+              h4 #{r.reponse}
+        else 
+          h2 Aucun réponse existe pour cette question
