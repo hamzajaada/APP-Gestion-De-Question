@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/styles/login.css')
   body
     .container
-      form(action='user/Login', method='POST')
+      form(action='/user/Login', method='POST')
         h2 Login
         label(for='email') Email:
         input(type='email', id='email', name='email', required)
@@ -15,4 +15,4 @@ html
         
         input(type="submit", value="login")
       p Don't have an account? 
-        a(href='/register') Register here
+        a(href='/user/register') Register here

@@ -1,11 +1,21 @@
 const express = require("express");
 const routerUser = express.Router();
-const Login = require("../midellwares/auth")
+const auththentification = require("../midellwares/auth")
 const app = express();
-const addUser = require("../controllers/userController")
+const userController = require("../controllers/userController")
 const user = require("../model/User")
 const session = require("express-session");
-routerUser.post("/register",addUser);
-routerUser.post("/Login",Login);
+
+// router get user
+
+routerUser.get("/Login",userController.get_login);
+routerUser.get("/register",userController.get_register);
+routerUser.get("/home",userController.get_home);
+routerUser.get("/logout",userController.get_logout);
+
+// router post user
+routerUser.post("/login",auththentification.auth,userController.post_login)
+routerUser.post("/register",userController.addUser);
+
 module.exports = routerUser;
 
