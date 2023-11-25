@@ -30,3 +30,13 @@ html
               else
                 p created by Unknown User
               a(href="#") reponses
+      else 
+        if question
+          each q in question
+            section.question-list
+              h3 #{q.question}
+              if q.user_id
+                p created by #{q.user_id.email}
+              else
+                p created by Unknown User
+              a(href="#") reponses

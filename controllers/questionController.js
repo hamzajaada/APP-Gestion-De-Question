@@ -5,51 +5,23 @@ const user = require("../model/User")
     const Ajouter_question = (req, res) => {
         const question = new Question(req.body);
         question.save()
-            .then((result) => {
+            .then(async (result) => {
                     console.log("created question")
-                    Question.find().populate('user_id').then((result)=>{
-                        const user = question.user_id;
-                        res.render("home", {
-                            user: req.session.user,
-                            question: question.question,
-                            username: user.username,
-                            userEmail: user.email,
-                        });
-                    }).catch((err) => {
+                    try {
+                        const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+                
+                        res.render("home", { question :question , user: req.session.user });
+                    } catch (err) {
                         console.log(err);
-                    });    
+                    }   
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-    const getQuestionWithUser = async (req, res) => {
-    try {
-        
 
-        const question = await Question.find().populate('user_id');
 
-        if (!question) {
-            return res.status(404).render('home', { error: 'Question not found' });
-        }
-
-        const user = question.user_id;
-
-        // Rendez le modèle Pug avec les données nécessaires
-        
-        res.render("home", {
-            user: req.session.user,
-            question: question.question,
-            username: user.username,
-            userEmail: user.email,
-        });
-       
-    } catch (error) {
-        res.status(500).render('home', { error: error.message });
-    }
-}
-
-module.exports = {Ajouter_question, getQuestionWithUser};
+module.exports = {Ajouter_question};
 
 
 

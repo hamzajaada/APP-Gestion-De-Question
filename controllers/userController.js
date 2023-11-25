@@ -1,5 +1,5 @@
 const user = require("../model/User")
-const question = require("../model/Question");
+const Question = require("../model/Question");
 const bcrypt = require('bcrypt');
 
 const addUser = async (req, res) => {
@@ -34,38 +34,45 @@ const get_register = (req,res)=>{
     res.render("register")
 };
 
-const get_home = (req,res)=>{
+const get_home = async (req,res)=>{
     if(req.session.user) {
-        question.find()
-        .then((result) => {
-            res.render("home", { question: result, user : req.session.user });
-        })
-        .catch((err) => {
+        try {
+            const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+    
+            res.render("home", { question :question , user: req.session.user });
+        } catch (err) {
             console.log(err);
-        });
+        } 
     }
     else {
-        question.find()
-        .then((result) => {
-            res.render("home", { question: result });
-        })
-        .catch((err) => {
+        try {
+            const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+    
+            res.render("home", { question :question });
+        } catch (err) {
             console.log(err);
-        });
+        } 
     }
     
 }
 
-const get_logout = (req, res) => {
+const get_logout = async (req, res) => {
     req.session.destroy();
-    res.render("home");
+    try {
+        const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+
+        res.render("home", { question :question  });
+    } catch (err) {
+        console.log(err);
+    } 
+
 }
 
 const post_login = async (req, res) => {
     try {
-        const Question= await question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+        const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
 
-        res.render("home", { question :Question , user: req.session.user });
+        res.render("home", { question :question , user: req.session.user });
     } catch (err) {
         console.log(err);
        
