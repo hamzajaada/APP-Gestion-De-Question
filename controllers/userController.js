@@ -61,9 +61,17 @@ const get_logout = (req, res) => {
     res.render("home");
 }
 
-const post_login = (req,res)=>{
-    res.render("home", { user: req.session.user });
+const post_login = async (req, res) => {
+    try {
+        const Question= await question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
+
+        res.render("home", { question :Question , user: req.session.user });
+    } catch (err) {
+        console.log(err);
+       
+    }
 };
+
 
 
 

@@ -23,7 +23,9 @@ app.use(
 
 
 
-
+app.get("/",(req,res)=>{
+  res.render('home')
+})
 app.use("/user",routerUser);
 app.use("/question",routerQuestion);
 app.use("/reponse",routerReponse);

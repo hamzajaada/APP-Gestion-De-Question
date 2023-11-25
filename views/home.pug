@@ -1,46 +1,32 @@
 html
   head
-    
     title Questions and Answers
     link(rel="stylesheet" href="/styles/home.css")
 
   body
     header
-      
-
       h1 Questions and Answers
-      if user   
-            h1 Good afternoon #{user.username}
-            a.lien(href="/user/logout") logout
-      else 
-            a.lien(href="/user/login") login  
-            a.lien(href="/user/register") Register
+      if user
+        h1 Good afternoon #{user.username}
+        a.lien(href="/user/logout") logout
+      else
+        a.lien(href="/user/login") login
+        a.lien(href="/user/register") Register
     main
-
-      if user  
+      if user
         section.question-form
-        
           form(action="/question/add_question", method="POST")
-            
-
             label(for="question") Your Question
             input(type="text", name="question")
             input(type="hidden", name="user_id" value=`${user._id}`)
-
             button(type="submit") Ask
 
-      section.question-list
-
-<<<<<<< HEAD
-     
-=======
-
->>>>>>> 92c22f805f2d19a889f3a04e85ac3bf68d9d8a9d
-
-            
-            h2 Question
-            p Question: #{question}
-            p Date: #{date}
-            p Asked by: #{userName} (#{userEmail})
-
-
+        if question
+          each q in question
+            section.question-list
+              h3 #{q.question}
+              if q.user_id
+                p created by #{q.user_id.email}
+              else
+                p created by Unknown User
+              a(href="#") reponses

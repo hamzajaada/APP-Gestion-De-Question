@@ -99,3 +99,36 @@ body, h1, h2, h3, p, input, button {
   color: black;
 }
   
+/* Style de la section des questions */
+section.question-list {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour chaque question */
+section.question-list .question {
+  border-bottom: 1px solid #ddd; /* Bordure inférieure pour séparer les questions */
+  padding-bottom: 20px; /* Espace entre chaque question */
+}
+
+/* Style pour le titre de la question */
+section.question-list .question h3 {
+  margin-bottom: 10px;
+}
+
+/* Style pour le lien de réponse */
+section.question-list .question a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+section.question-list .question a:hover {
+  text-decoration: underline;
+}
