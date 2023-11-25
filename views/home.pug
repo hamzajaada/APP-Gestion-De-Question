@@ -6,27 +6,33 @@ html
 
   body
     header
-      if user   
-            h1 Good afternoon #{user.username}
-            a(href="") logout  
-            a(href="") Add article
-      else 
-            a(href="") login  
-            a(href="") Register
+      
 
       h1 Questions and Answers
+      if user   
+            h1 Good afternoon #{user.username}
+            a.lien(href="/logout") logout
+      else 
+            a.lien(href="/login") login  
+            a.lien(href="/register") Register
     main
-      section.question-form
-       
-        form(action="/ask", method="POST")
-          
 
-          label(for="question") Your Question
-          input(type="text", name="")
+      if user  
+        section.question-form
+        
+          form(action="/question/add_question", method="POST")
+            
 
-          button(type="submit") Ask
+            label(for="question") Your Question
+            input(type="text", name="question")
+            input(type="hidden", name="user_id" value=`${user._id}`)
+
+            button(type="submit") Ask
 
       section.question-list
+
+        each i in question
+
             
             p.question-info
               | Asked by  on  hamza jaada on 2023

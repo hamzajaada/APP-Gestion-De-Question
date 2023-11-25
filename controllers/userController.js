@@ -23,5 +23,6 @@ const addUser = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send("Erreur lors de la création de l'utilisateur");
-    }}
+}}
+
 module.exports = addUser;

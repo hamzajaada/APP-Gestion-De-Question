@@ -1,9 +1,13 @@
 const express = require("express")
 const app = express();
 const mongoose = require("mongoose");
-const url ="mongodb://localhost:27017/Forum"
-// const url ="mongodb://127.0.0.1:27017/Forum"
+// const url ="mongodb://localhost:27017/Forum"
+const url ="mongodb://127.0.0.1:27017/Forum"
+
 const routerUser = require("./routes/UsersRoute")
+const routerQuestion = require("./routes/questionroute")
+const routerReponse = require("./routes/reponseRoute")
+
 const session = require("express-session");
 app.use(express.static('public'))
 app.set("view engine", "pug");
@@ -16,17 +20,27 @@ app.use(
         saveUninitialized: true,
     })
 );
+
+
 app.get("/login",(req,res)=>{
     res.render("login")
 })
+
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.render("home");
+});
+
 app.get("/register",(req,res)=>{
     res.render("register")
 })
 app.get("/",(req,res)=>{
-    res.render("home")
+    res.render("home", )
 })
 
 app.use("/user",routerUser);
+app.use("/question",routerQuestion);
+app.use("/reponse",routerReponse);
 
 // Connection de MongoDB :
 mongoose
