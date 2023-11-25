@@ -16,7 +16,7 @@ html
       if user
         section.question-form
           form(action="/question/add_question", method="POST")
-            label(for="question") Your Question
+            label(for="question") Your Question 
             input(type="text", name="question", placeholder="Ask something...")
             input(type="hidden", name="user_id", value=`${user._id}`)
             button(type="submit") Ask
@@ -29,7 +29,7 @@ html
               else
                 p.created-by created by Unknown User
               h3 #{q.question}
-              a(href="#") Reponses
+              a(href=`/reponse/reponses/${q._id}`) Reponses
       else 
         if question
           each q in question
@@ -42,4 +42,4 @@ html
                 p.created-by created by Unknown User
               h3 #{q.question}
               
-              a(href="#") Reponses
+              a(href=`/reponse/reponses/${q._id}`) Reponses

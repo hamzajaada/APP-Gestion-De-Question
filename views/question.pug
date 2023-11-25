@@ -1,0 +1,42 @@
+html
+  head
+    title Reponses
+    link(rel="stylesheet", href="/styles/question.css")
+
+  body
+    header
+      h1 Reponses 
+      if user
+        a.lien(href="/user/home") home
+        a.lien(href="/user/logout") Logout
+        
+      else
+        a.lien(href="/user/login") Login
+        a.lien(href="/user/register") Register
+    main
+      if user
+        h2 the question : #{question.question}
+        section.question-form
+          form(action="/reponse/addReponse", method="POST")
+            label(for="question") Your Reponses about :
+            input(type="text", name="reponse", placeholder="Write something...")
+            input(type="hidden", name="user_id", value=`${user._id}`)
+            input(type="hidden", name="question_id", value=`${question._id}`)
+            button(type="submit") Envoyer
+    
+        if reponse
+         each r in reponse
+          div.reponse-list 
+            p Reponses by #{r.user_id.email}
+            p #{moment(r.createdAt).subtract(10, 'days').calendar()}
+            h4 #{r.reponse}
+      else 
+        h2 the question : #{question.question}
+        if reponse
+         each r in reponse
+          div.reponse-list 
+            p Reponses by #{r.user_id.email}
+            p #{moment(r.createdAt).subtract(10, 'days').calendar()}
+            h4 #{r.reponse}
+      
+        

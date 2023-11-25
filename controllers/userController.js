@@ -73,7 +73,8 @@ const post_login = async (req, res) => {
     try {
         const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
 
-        res.render("home", { question :question , user: req.session.user, moment: moment });
+        res.render("home", { question :question , user: req.session.user, moment: 
+            moment });
     } catch (err) {
         console.log(err);
        
