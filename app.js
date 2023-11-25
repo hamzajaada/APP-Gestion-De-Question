@@ -22,21 +22,7 @@ app.use(
 );
 
 
-app.get("/login",(req,res)=>{
-    res.render("login")
-})
 
-app.get("/logout", (req, res) => {
-    req.session.destroy();
-    res.render("home");
-});
-
-app.get("/register",(req,res)=>{
-    res.render("register")
-})
-app.get("/",(req,res)=>{
-    res.render("home", )
-})
 
 app.use("/user",routerUser);
 app.use("/question",routerQuestion);

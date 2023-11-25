@@ -11,10 +11,10 @@ html
       h1 Questions and Answers
       if user   
             h1 Good afternoon #{user.username}
-            a.lien(href="/logout") logout
+            a.lien(href="/user/logout") logout
       else 
-            a.lien(href="/login") login  
-            a.lien(href="/register") Register
+            a.lien(href="/user/login") login  
+            a.lien(href="/user/register") Register
     main
 
       if user  
@@ -31,7 +31,7 @@ html
 
       section.question-list
 
-        each i in question
+
 
             
             p.question-info
