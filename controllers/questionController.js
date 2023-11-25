@@ -1,6 +1,7 @@
 const express = require('express');
 const Question = require('../model/Question');
 const user = require("../model/User")
+const moment = require("moment")
 //fonction ajoute question :
     const Ajouter_question = (req, res) => {
         const question = new Question(req.body);

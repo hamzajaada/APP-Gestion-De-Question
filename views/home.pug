@@ -26,7 +26,8 @@ html
             section.question-list
               h3 #{q.question}
               if q.user_id
-                p created by #{q.user_id.email}
+                p created by #{q.user_id.email} 
+                p #{moment(q.createdAt).subtract(10, 'days').calendar()}
               else
                 p created by Unknown User
               a(href="#") reponses
@@ -36,7 +37,8 @@ html
             section.question-list
               h3 #{q.question}
               if q.user_id
-                p created by #{q.user_id.email}
+                p created by #{q.user_id.email} 
+                p #{moment(q.createdAt).subtract(10, 'days').calendar()}
               else
                 p created by Unknown User
               a(href="#") reponses

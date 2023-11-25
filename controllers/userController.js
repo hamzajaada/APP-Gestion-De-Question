@@ -1,6 +1,7 @@
 const user = require("../model/User")
 const Question = require("../model/Question");
 const bcrypt = require('bcrypt');
+const moment = require("moment")
 
 const addUser = async (req, res) => {
     try {
@@ -39,7 +40,7 @@ const get_home = async (req,res)=>{
         try {
             const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
     
-            res.render("home", { question :question , user: req.session.user });
+            res.render("home", { question :question , user: req.session.user, moment : moment  });
         } catch (err) {
             console.log(err);
         } 
@@ -48,7 +49,7 @@ const get_home = async (req,res)=>{
         try {
             const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
     
-            res.render("home", { question :question });
+            res.render("home", { question :question, moment: moment });
         } catch (err) {
             console.log(err);
         } 
@@ -61,7 +62,7 @@ const get_logout = async (req, res) => {
     try {
         const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
 
-        res.render("home", { question :question  });
+        res.render("home", { question :question , moment : moment  });
     } catch (err) {
         console.log(err);
     } 
@@ -72,7 +73,7 @@ const post_login = async (req, res) => {
     try {
         const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
 
-        res.render("home", { question :question , user: req.session.user });
+        res.render("home", { question :question , user: req.session.user, moment: moment });
     } catch (err) {
         console.log(err);
        
