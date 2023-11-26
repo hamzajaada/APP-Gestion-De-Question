@@ -7,7 +7,6 @@ html
     header
       h1 Questions and Answers
       if user
-        //- h2 Good afternoon #{user.username}
         a.lien(href="/user/logout") Logout
       else
         a.lien(href="/user/login") Login
@@ -26,7 +25,7 @@ html
             section.question-list
               p.created-by  #{moment(q.createdAt).subtract(10, 'days').calendar()}  by #{q.user_id.email} 
               h3 #{q.question}
-              a(href=`/reponse/reponses/${q._id}`) Reponses
+              a(href=`/reponse/${q._id}`) Reponses
       else 
         if question
           each q in question
@@ -38,4 +37,4 @@ html
                 p.created-by created by Unknown User
               h3 #{q.question}
               
-              a(href=`/reponse/reponses/${q._id}`) Reponses
+              a(href=`/reponse/${q._id}`) Reponses
