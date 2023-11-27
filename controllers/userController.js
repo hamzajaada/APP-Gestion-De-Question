@@ -5,8 +5,11 @@ const moment = require("moment")
 
 const addUser = async (req, res) => {
     try {
+<<<<<<< HEAD
         //console.log(req.body.password);
 
+=======
+>>>>>>> 86b386560842198d2562ceed621f099e08ac8e9d
         if (req.body.password === req.body.confirmpassword) {
             // Hasher le mot de passe
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -39,7 +42,6 @@ const get_home = async (req,res)=>{
     if(req.session.user) {
         try {
             const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-    
             res.render("home", { question :question , user: req.session.user, moment : moment  });
         } catch (err) {
             console.log(err);
@@ -48,7 +50,6 @@ const get_home = async (req,res)=>{
     else {
         try {
             const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-    
             res.render("home", { question :question, moment: moment });
         } catch (err) {
             console.log(err);
@@ -61,7 +62,6 @@ const get_logout = async (req, res) => {
     req.session.destroy();
     try {
         const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-
         res.render("home", { question :question , moment : moment  });
     } catch (err) {
         console.log(err);
@@ -72,9 +72,7 @@ const get_logout = async (req, res) => {
 const post_login = async (req, res) => {
     try {
         const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-
-        res.render("home", { question :question , user: req.session.user, moment: 
-            moment });
+        res.render("home", { question :question , user: req.session.user, moment: moment });
     } catch (err) {
         console.log(err);
        
