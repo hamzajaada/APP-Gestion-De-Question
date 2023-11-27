@@ -5,11 +5,6 @@ const moment = require("moment")
 
 const addUser = async (req, res) => {
     try {
-<<<<<<< HEAD
-        //console.log(req.body.password);
-
-=======
->>>>>>> 86b386560842198d2562ceed621f099e08ac8e9d
         if (req.body.password === req.body.confirmpassword) {
             // Hasher le mot de passe
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
