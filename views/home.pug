@@ -21,12 +21,14 @@ html
             input(type="hidden", name="user_id", value=`${user._id}`)
             button(type="submit") Ask
 
-        if question
+        if question  && question.length > 0
           each q in question
             section.question-list
               p.created-by  #{moment(q.createdAt).subtract(10, 'days').calendar()}  by #{q.user_id.email} 
               h3 #{q.question}
               a(href=`/reponse/reponses/${q._id}`) Reponses
+        else 
+          h1 Aucune question
       else 
         if question
           each q in question

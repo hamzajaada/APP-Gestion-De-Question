@@ -1,0 +1,52 @@
+
+/****AjouterUser*****
+-pour hasher un mot de passe :
+	on doit faire l'appelle a modele bcrypt puis 
+	const hashpassword = bcrypt.hash(req.body.password,10)
+- const User = new user({...req.body,password: hashedPassword});
+
+==> La syntaxe (...req.body) est une manière de copier toutes les propriétés de req.body dans le nouvel utilisateur que vous créez. Ensuite, vous remplacez spécifiquement la propriété password de cet utilisateur avec le mot de passe haché que vous avez obtenu à l'aide de Bcrypt.
+
+/****Login*******
+
+midllware auth.js :
+==> pour dehasher un mote de pass et comparer avec un motepass
+     user = User.findOne({email:email})
+---> const match = bcrypt.compare(password,user.password)
+    if (match) {
+	req.session.user = user ;
+       // next pour passer a la fonction suivant dans le route
+        next();}
+    else{
+	       console.log("Erreur d'authentification");
+          }
+
+===> donc comment on va travailer avec le midlware :
+ on va declarer un fonction qui va rediger vers home :
+ 
+const post_login = async (req, res) => {
+    try {
+        res.render("home", { question :question , user: req.session.user, moment: 
+            moment });
+    } catch (err) {
+        console.log(err);
+       
+    }
+};
+
+un route :
+routerUser.post("/login",authentiification.auth,post_login)
+
+// la fonction logout :
+const get_logout = async (req, res) => {
+    req.session.destroy();
+    try {
+        res.render("home", { question :question , moment : moment  });
+    } catch (err) {
+        console.log(err);
+    } 
+}
+
+
+
+
