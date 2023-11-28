@@ -56,8 +56,7 @@ const get_home = async (req,res)=>{
 const get_logout = async (req, res) => {
     req.session.destroy();
     try {
-        const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-        res.render("home", { question :question , moment : moment  });
+        res.redirect("/user/home")
     } catch (err) {
         console.log(err);
     } 
@@ -66,8 +65,7 @@ const get_logout = async (req, res) => {
 
 const post_login = async (req, res) => {
     try {
-        const question= await Question.find().populate('user_id'); // Utilisez populate pour obtenir les détails de l'utilisateur
-        res.render("home", { question :question , user: req.session.user, moment: moment });
+        res.redirect("/user/home")
     } catch (err) {
         console.log(err);
        

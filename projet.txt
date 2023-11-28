@@ -46,7 +46,16 @@ const get_logout = async (req, res) => {
         console.log(err);
     } 
 }
+app.use(express.static('public'))
+app.set("view engine", "pug");
+app.set("views", "./views");
 
+question_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+
+
+pour utliser les methode update et delete
+var methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 
 
 
